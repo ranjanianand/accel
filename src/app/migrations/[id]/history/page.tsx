@@ -19,7 +19,7 @@ async function getHistory(id: string) {
       metadata: {
         'Quality Score': '99.8%',
         'Validations Passed': '15/15',
-      },
+      } as Record<string, string>,
     },
     {
       id: '3',
@@ -30,7 +30,7 @@ async function getHistory(id: string) {
       metadata: {
         'Duration': '2m 34s',
         'Automation Rate': '96%',
-      },
+      } as Record<string, string>,
     },
     {
       id: '4',
@@ -41,7 +41,7 @@ async function getHistory(id: string) {
       metadata: {
         'File Size': '245 KB',
         'Pattern Detected': 'SCD Type 2',
-      },
+      } as Record<string, string>,
     },
   ]
 }
