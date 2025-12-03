@@ -111,6 +111,8 @@ interface SetupStore {
 
   // Actions - Project
   updateProjectInfo: (info: Partial<ProjectInfo>) => void
+  completeProject: () => void
+  editProject: () => void
 
   // Actions - Upload
   addFiles: (files: File[]) => void
@@ -179,6 +181,14 @@ export const useSetupStore = create<SetupStore>()(
             projectInfo: { ...get().projectInfo, ...info },
             projectStatus: 'complete'
           })
+        },
+
+        completeProject: () => {
+          set({ projectStatus: 'locked' })
+        },
+
+        editProject: () => {
+          set({ projectStatus: 'complete' })
         },
 
         // Upload actions
