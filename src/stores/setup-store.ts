@@ -107,6 +107,7 @@ interface SetupStore {
   // UI States
   isAnalyzing: boolean
   isUploadLocked: boolean
+  isProjectCollapsed: boolean
 
   // Actions - Project
   updateProjectInfo: (info: Partial<ProjectInfo>) => void
@@ -159,6 +160,7 @@ const initialState = {
 
   isAnalyzing: false,
   isUploadLocked: false,
+  isProjectCollapsed: false,
 }
 
 // ============================================================================
