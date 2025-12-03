@@ -99,7 +99,7 @@ export default async function DashboardPage() {
                 3 Days
               </Button>
               <Button
-                variant="default"
+                variant="primary"
                 size="sm"
                 className="h-7 px-3 text-xs bg-white text-foreground shadow-sm hover:bg-white border border-border"
               >
