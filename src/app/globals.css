@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-geist-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-geist-mono: 'Geist Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply text-xl font-semibold tracking-tight;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    @apply text-lg font-semibold;
+  }
+
+  h4 {
+    @apply text-base font-semibold;
+  }
+}
+
+@layer components {
+  .input-base {
+    @apply w-full h-10 px-3 py-2 text-sm rounded bg-background;
+    @apply border-t border-r border-b border-l border-border;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:border-foreground;
+    @apply placeholder:text-foreground-tertiary;
+    @apply shadow-sm hover:border-border-hover;
+  }
+
+  .btn-base {
+    @apply h-10 px-4 inline-flex items-center justify-center gap-2;
+    @apply text-sm font-medium rounded;
+    @apply transition-all duration-200;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+    @apply shadow-sm;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-foreground text-background;
+    @apply hover:bg-foreground/90 hover:shadow-md;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply btn-base border border-border bg-background;
+    @apply hover:bg-background-secondary hover:border-border-hover;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn-base hover:bg-background-secondary;
+    @apply shadow-none;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-background p-6;
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full;
+    @apply border border-border bg-background-secondary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation utilities for setup flow */
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-in-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

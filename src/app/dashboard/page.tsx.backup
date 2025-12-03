@@ -1,0 +1,188 @@
+import { Header } from '@/components/layout/header'
+import { SystemStatus } from '@/components/dashboard/system-status'
+import { MetricCard } from '@/components/dashboard/metrics-card'
+import { UsageChart } from '@/components/dashboard/usage-chart'
+import { RecentMigrations } from '@/components/dashboard/recent-migrations'
+import { AlertsWidget } from '@/components/dashboard/alerts-widget'
+import { QualityScore } from '@/components/dashboard/quality-score'
+import { QuickActions } from '@/components/dashboard/quick-actions'
+import { BarChart3, CheckCircle2, Clock, TrendingUp } from 'lucide-react'
+
+// Mock data - replace with actual API calls
+async function getMetrics() {
+  return {
+    totalJobs: { value: 1847, trend: '+143 this month' },
+    completed: { value: 1652, percentage: '89.4%' },
+    inProgress: { value: 128, percentage: '6.9%' },
+    successRate: { value: '96.8%', trend: '+2.3% vs last month', positive: true },
+  }
+}
+
+async function getUsageData() {
+  return [
+    { label: 'Conversion Jobs', current: 1847, limit: 5000, percentage: 36.94 },
+    { label: 'Data Validation Runs', current: 23456, limit: 100000, percentage: 23.46 },
+    { label: 'Expression Conversions', current: 185420, limit: 1000000, percentage: 18.54 },
+    { label: 'Business Rule Tests', current: 7842, limit: 10000, percentage: 78.42 },
+  ]
+}
+
+async function getRecentMigrations() {
+  return [
+    {
+      id: '1',
+      name: 'DIM_CUSTOMER_SCD2_LOAD',
+      pattern: 'SCD Type 2',
+      complexity: 73,
+      status: 'completed' as const,
+      validationScore: 99.7,
+      timestamp: '12m ago',
+    },
+    {
+      id: '2',
+      name: 'FACT_SALES_DAILY_AGG',
+      pattern: 'Fact Load',
+      complexity: 82,
+      status: 'in_progress' as const,
+      progress: 67,
+      timestamp: '5m ago',
+    },
+    {
+      id: '3',
+      name: 'STG_PRODUCT_HIERARCHY_CDC',
+      pattern: 'CDC',
+      complexity: 91,
+      status: 'completed' as const,
+      validationScore: 99.9,
+      timestamp: '1h ago',
+    },
+    {
+      id: '4',
+      name: 'LKP_CURRENCY_EXCHANGE_RATES',
+      pattern: 'Lookup',
+      complexity: 38,
+      status: 'completed' as const,
+      validationScore: 100,
+      timestamp: '3h ago',
+    },
+  ]
+}
+
+async function getAlerts() {
+  return [
+    {
+      id: '1',
+      migrationName: 'DIM_PRODUCT_MASTER_LOAD',
+      severity: 'error' as const,
+      message: 'Row count validation failed: Source 2.4M rows vs Target 2.39M rows (-0.42%)',
+      timestamp: '2h ago',
+    },
+    {
+      id: '2',
+      migrationName: 'FACT_SALES_DAILY_AGG',
+      severity: 'warning' as const,
+      message: '5 business rules need manual review - complex aggregation logic detected',
+      timestamp: '45m ago',
+    },
+    {
+      id: '3',
+      migrationName: 'STG_INVENTORY_SNAPSHOT_CDC',
+      severity: 'warning' as const,
+      message: 'Expression conversion: DECODE with 12 nested conditions requires verification',
+      timestamp: '3h ago',
+    },
+    {
+      id: '4',
+      migrationName: 'REF_EXCHANGE_RATE_LOOKUP',
+      severity: 'info' as const,
+      message: 'Performance optimization available: Consider indexing strategy for lookup',
+      timestamp: '6h ago',
+    },
+  ]
+}
+
+async function getQualityScore() {
+  return {
+    score: 98.6,
+    target: 99.5,
+    trend: '↑ 1.3% vs last month',
+    metrics: [
+      { label: 'Row Count Match', value: '99.8%', status: 'success' as const },
+      { label: 'Aggregate Match', value: '98.7%', status: 'success' as const },
+      { label: 'Sample Match', value: '97.2%', status: 'warning' as const, reviewCount: 8 },
+    ],
+  }
+}
+
+export default async function DashboardPage() {
+  const [metrics, usage, recentMigrations, alerts, qualityScore] = await Promise.all([
+    getMetrics(),
+    getUsageData(),
+    getRecentMigrations(),
+    getAlerts(),
+    getQualityScore(),
+  ])
+
+  return (
+    <>
+      <Header />
+      <SystemStatus />
+
+      <main className="p-8 space-y-8 max-w-[1600px] mx-auto">
+        {/* Metrics Cards */}
+        <div className="grid grid-cols-4 gap-6">
+          <MetricCard
+            title="Total Jobs"
+            value={metrics.totalJobs.value}
+            subtitle={metrics.totalJobs.trend}
+            footer="📊 View All"
+            icon={<BarChart3 className="h-4 w-4 text-foreground-secondary" />}
+          />
+          <MetricCard
+            title="Completed"
+            value={metrics.completed.value}
+            subtitle={`✓ ${metrics.completed.percentage}`}
+            footer="📥 Export"
+            icon={<CheckCircle2 className="h-4 w-4 text-status-success" />}
+          />
+          <MetricCard
+            title="In Progress"
+            value={metrics.inProgress.value}
+            subtitle={`⟳ ${metrics.inProgress.percentage}`}
+            footer="⏱ Avg 2.3min"
+            icon={<Clock className="h-4 w-4 text-status-info" />}
+          />
+          <MetricCard
+            title="Success Rate"
+            value={metrics.successRate.value}
+            subtitle="vs last week"
+            trend={{
+              value: metrics.successRate.trend,
+              positive: metrics.successRate.positive,
+            }}
+            footer="🎯 Target 95%"
+            icon={<TrendingUp className="h-4 w-4 text-status-success" />}
+          />
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-3 gap-6">
+          {/* Left Column - Usage & Quality */}
+          <div className="col-span-2 space-y-6">
+            <UsageChart data={usage} />
+            <QualityScore {...qualityScore} />
+          </div>
+
+          {/* Right Column - Alerts & Recent */}
+          <div className="space-y-6">
+            <AlertsWidget alerts={alerts} />
+            <RecentMigrations data={recentMigrations} />
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <QuickActions />
+      </main>
+    </>
+  )
+}
