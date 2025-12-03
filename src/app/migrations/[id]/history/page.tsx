@@ -1,6 +1,6 @@
-import { HistoryTab } from '@/components/migration-detail/history-tab'
+import { HistoryTab, HistoryEvent } from '@/components/migration-detail/history-tab'
 
-async function getHistory(id: string) {
+async function getHistory(id: string): Promise<HistoryEvent[]> {
   // Mock data - replace with actual API call
   return [
     {
