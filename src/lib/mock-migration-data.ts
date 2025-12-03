@@ -400,6 +400,8 @@ export function getMockMigrationData(id: string): {
           type: 'primary',
         },
       ],
+      documentation: [],
+      sourceFiles: [],
       fileTree: {}, // Mock tree structure
     },
     issues: {

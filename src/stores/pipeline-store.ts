@@ -44,8 +44,11 @@ const stageOrder: PipelineStage[] = [
 const initialStages: Record<PipelineStage, StageResult> = {
   setup: { stage: 'setup', status: 'in_progress' }, // Start with setup active
   analysis: { stage: 'analysis', status: 'pending' },
+  review: { stage: 'review', status: 'pending' },
   discovery: { stage: 'discovery', status: 'pending' },
   conversion: { stage: 'conversion', status: 'pending' },
+  validation: { stage: 'validation', status: 'pending' },
+  optimization: { stage: 'optimization', status: 'pending' },
   completed: { stage: 'completed', status: 'pending' }
 }
 
