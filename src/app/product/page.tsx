@@ -810,7 +810,7 @@ export default function ProductPage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-background border border-border rounded-xl p-8">
-                <div className="text-foreground-tertiary mb-4">"</div>
+                <div className="text-foreground-tertiary mb-4">&quot;</div>
                 <p className="text-foreground-secondary mb-6 leading-relaxed">
                   Migration Accelerator saved us 5 months. The automated validation caught issues we would have missed.
                 </p>
@@ -826,7 +826,7 @@ export default function ProductPage() {
               </div>
 
               <div className="bg-background border border-border rounded-xl p-8">
-                <div className="text-foreground-tertiary mb-4">"</div>
+                <div className="text-foreground-tertiary mb-4">&quot;</div>
                 <p className="text-foreground-secondary mb-6 leading-relaxed">
                   We migrated 180 jobs in 7 weeks. The ROI was immediate. Best investment we made this year.
                 </p>
@@ -842,7 +842,7 @@ export default function ProductPage() {
               </div>
 
               <div className="bg-background border border-border rounded-xl p-8">
-                <div className="text-foreground-tertiary mb-4">"</div>
+                <div className="text-foreground-tertiary mb-4">&quot;</div>
                 <p className="text-foreground-secondary mb-6 leading-relaxed">
                   The dependency discovery alone was worth it. Saved weeks of manual documentation.
                 </p>

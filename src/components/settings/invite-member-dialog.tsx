@@ -65,7 +65,7 @@ export function InviteMemberDialog({ isOpen, onClose }: InviteMemberDialogProps)
               required
             />
             <p className="text-xs text-muted-foreground">
-              We'll send them an invitation to join your team
+              We&apos;ll send them an invitation to join your team
             </p>
           </div>
 

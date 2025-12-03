@@ -201,7 +201,7 @@ export function Step1ProjectInfo() {
                   What happens next?
                 </h4>
                 <p className="text-sm text-blue-700">
-                  After creating your project, you'll upload Informatica XML files for
+                  After creating your project, you&apos;ll upload Informatica XML files for
                   automatic analysis and pattern detection. Our platform will identify
                   mappings, workflows, connections, and estimate automation potential.
                 </p>

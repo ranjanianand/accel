@@ -448,7 +448,7 @@ export function Step4ReviewConfirm() {
                 specialized engines
               </li>
               <li>
-                • You'll receive real-time progress updates with detailed conversion logs
+                • You&apos;ll receive real-time progress updates with detailed conversion logs
               </li>
               <li>• Generated Talend jobs will be available for download and validation</li>
               <li>

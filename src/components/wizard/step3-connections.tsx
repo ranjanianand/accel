@@ -327,7 +327,7 @@ export function Step3Connections() {
         </h2>
         <p className="text-muted-foreground">
           Configure connections detected in your Informatica files. Test connections to ensure
-          they're working correctly.
+          they&apos;re working correctly.
         </p>
       </div>
 

@@ -290,7 +290,7 @@ export function ExecutiveSummaryTab({ data }: ExecutiveSummaryTabProps) {
                           const mediumDash = (mediumPercent / 100) * circumference
                           const highDash = (highPercent / 100) * circumference
 
-                          let offset = 0
+                          const offset = 0
 
                           return (
                             <>
