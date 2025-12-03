@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type PipelineStage = 'setup' | 'analysis' | 'discovery' | 'conversion' | 'completed'
+export type PipelineStage = 'setup' | 'analysis' | 'discovery' | 'conversion' | 'validation' | 'optimization' | 'completed'
 export type StageStatus = 'pending' | 'in_progress' | 'completed' | 'error'
 
 export interface StageResult {
