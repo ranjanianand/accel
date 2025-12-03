@@ -115,7 +115,7 @@ export function AccountSettings() {
                 Add an extra layer of security to your account
               </p>
             </div>
-            <Button variant={enable2FA ? 'secondary' : 'default'} onClick={() => setEnable2FA(!enable2FA)}>
+            <Button variant={enable2FA ? 'secondary' : 'primary'} onClick={() => setEnable2FA(!enable2FA)}>
               {enable2FA ? 'Disable' : 'Enable'}
             </Button>
           </div>
