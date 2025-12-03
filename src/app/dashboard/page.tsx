@@ -359,12 +359,12 @@ export default async function DashboardPage() {
                   { name: 'CDC', success: 95.3, quality: 97.8, speed: 5.8, status: 'warning' },
                   { name: 'Aggregation', success: 94.7, quality: 98.2, speed: 6.3, status: 'warning' }
                 ].map((pattern, i) => {
-                  const statusColors = {
+                  const statusColors: Record<string, string> = {
                     excellent: 'border-green-200 bg-green-50',
                     good: 'border-blue-200 bg-blue-50',
                     warning: 'border-yellow-200 bg-yellow-50'
                   }
-                  const dotColors = {
+                  const dotColors: Record<string, string> = {
                     excellent: 'bg-green-500',
                     good: 'bg-blue-500',
                     warning: 'bg-yellow-500'
