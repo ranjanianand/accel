@@ -86,8 +86,8 @@ export function FileUpload({ onFileSelect, onXmlPaste }: FileUploadProps) {
                   className="hidden"
                   onChange={handleFileInput}
                 />
-                <Button variant="secondary" className="cursor-pointer" asChild>
-                  <span>Browse Files</span>
+                <Button variant="secondary" className="cursor-pointer" type="button">
+                  Browse Files
                 </Button>
               </label>
             </div>

@@ -428,11 +428,11 @@ export function Step2UploadDetection() {
       const analysis = await wizardAPI.analyzeFiles(fileIds)
 
       // Update store with analysis results
-      setAnalysisResults(analysis)
+      setAnalysisResults(analysis as any)
 
       // Update detected connections
       if (analysis.detectedConnections && analysis.detectedConnections.length > 0) {
-        setDetectedConnections(analysis.detectedConnections)
+        setDetectedConnections(analysis.detectedConnections as any)
       }
 
     } catch (error) {

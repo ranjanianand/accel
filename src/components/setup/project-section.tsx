@@ -45,7 +45,7 @@ export function SetupProjectSection() {
   }
 
   // Collapsed State
-  if (isProjectCollapsed && projectStatus === 'complete') {
+  if (isProjectCollapsed && (projectStatus === 'complete' || projectStatus === 'locked')) {
     return (
       <div className="bg-background border border-border rounded-lg p-6">
         <div className="flex items-start justify-between">
