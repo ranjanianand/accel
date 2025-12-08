@@ -35,8 +35,8 @@ export function XMLHighlighter({ xml }: XMLHighlighterProps) {
             <span key={key++}>
               {space}
               <span className="text-blue-600">{attrName}</span>
-              <span className="text-gray-700">="</span>
-              <span className="text-green-600">"{attrValue}"</span>
+              <span className="text-gray-700">=&quot;</span>
+              <span className="text-green-600">&quot;{attrValue}&quot;</span>
             </span>
           )
         } else {

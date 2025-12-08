@@ -90,13 +90,13 @@ export default function EstimatePage() {
     }
   }
 
-  const getRiskBadgeVariant = (level: string): "default" | "secondary" | "destructive" | "outline" => {
+  const getRiskBadgeVariant = (level: string): "default" | "success" | "info" | "warning" | "error" | "pending" => {
     switch (level.toUpperCase()) {
-      case 'LOW': return 'default'
-      case 'MEDIUM': return 'secondary'
-      case 'HIGH': return 'outline'
-      case 'CRITICAL': return 'destructive'
-      default: return 'outline'
+      case 'LOW': return 'success'
+      case 'MEDIUM': return 'info'
+      case 'HIGH': return 'warning'
+      case 'CRITICAL': return 'error'
+      default: return 'default'
     }
   }
 
@@ -193,7 +193,7 @@ export default function EstimatePage() {
                 >
                   {result.risk_level} Risk
                 </Badge>
-                <Badge variant="outline" className="text-lg px-4 py-1">
+                <Badge variant="info" className="text-lg px-4 py-1">
                   {(result.success_probability * 100).toFixed(0)}% Success Probability
                 </Badge>
               </div>

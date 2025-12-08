@@ -303,7 +303,7 @@ function ProjectCard({ project, onViewPipeline }: { project: Project; onViewPipe
               </div>
             )}
             {project.health === 'critical' && (
-              <Badge variant="destructive" className="text-[13px] font-medium h-5 px-1.5">
+              <Badge variant="error" className="text-[13px] font-medium h-5 px-1.5">
                 <AlertCircle className="w-2.5 h-2.5 mr-1" />
                 STUCK - {project.timeElapsed}
               </Badge>
@@ -378,7 +378,7 @@ function ProjectCard({ project, onViewPipeline }: { project: Project; onViewPipe
               </div>
             )}
             {project.attentionCount && project.attentionCount > 0 && (
-              <Badge variant="destructive" className="text-[13px] font-medium h-5 px-1.5">
+              <Badge variant="error" className="text-[13px] font-medium h-5 px-1.5">
                 <AlertCircle className="w-2.5 h-2.5 mr-1" />
                 {project.attentionCount} need{project.attentionCount > 1 ? '' : 's'} attention
               </Badge>
@@ -530,7 +530,7 @@ export default function ProjectsPage() {
                 <div className={`${stageConfig.setup.color} rounded-lg p-3 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h2 className="text-sm font-semibold text-slate-900">{stageConfig.setup.label}</h2>
-                    <Badge variant="secondary" className="text-xs">{projectsByStage.setup.length}</Badge>
+                    <Badge variant="info" className="text-xs">{projectsByStage.setup.length}</Badge>
                   </div>
                 </div>
                 <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
@@ -545,7 +545,7 @@ export default function ProjectsPage() {
                 <div className={`${stageConfig.analysis.color} rounded-lg p-3 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h2 className="text-sm font-semibold text-slate-900">{stageConfig.analysis.label}</h2>
-                    <Badge variant="secondary" className="text-xs">{projectsByStage.analysis.length}</Badge>
+                    <Badge variant="info" className="text-xs">{projectsByStage.analysis.length}</Badge>
                   </div>
                 </div>
                 <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
@@ -560,7 +560,7 @@ export default function ProjectsPage() {
                 <div className={`${stageConfig.discovery.color} rounded-lg p-3 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h2 className="text-sm font-semibold text-slate-900">{stageConfig.discovery.label}</h2>
-                    <Badge variant="secondary" className="text-xs">{projectsByStage.discovery.length}</Badge>
+                    <Badge variant="info" className="text-xs">{projectsByStage.discovery.length}</Badge>
                   </div>
                 </div>
                 <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
@@ -575,7 +575,7 @@ export default function ProjectsPage() {
                 <div className={`${stageConfig.conversion.color} rounded-lg p-3 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h2 className="text-sm font-semibold text-slate-900">{stageConfig.conversion.label}</h2>
-                    <Badge variant="secondary" className="text-xs">{projectsByStage.conversion.length}</Badge>
+                    <Badge variant="info" className="text-xs">{projectsByStage.conversion.length}</Badge>
                   </div>
                 </div>
                 <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
@@ -590,7 +590,7 @@ export default function ProjectsPage() {
                 <div className={`${stageConfig.completed.color} rounded-lg p-3 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h2 className="text-sm font-semibold text-slate-900">{stageConfig.completed.label}</h2>
-                    <Badge variant="secondary" className="text-xs">{projectsByStage.completed.length}</Badge>
+                    <Badge variant="info" className="text-xs">{projectsByStage.completed.length}</Badge>
                   </div>
                 </div>
                 <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
@@ -623,14 +623,14 @@ export default function ProjectsPage() {
                     <p className="text-sm text-slate-500 mt-1">{selectedProject.type}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs h-6 px-2.5 border-slate-200 text-slate-600">
+                    <Badge variant="default" className="text-xs h-6 px-2.5 border-slate-200 text-slate-600">
                       {stageConfig[selectedProject.stage].label}
                     </Badge>
                     {selectedProject.health === 'critical' && (
-                      <Badge variant="destructive" className="text-xs h-6 px-2.5">Critical</Badge>
+                      <Badge variant="error" className="text-xs h-6 px-2.5">Critical</Badge>
                     )}
                     {selectedProject.health === 'warning' && (
-                      <Badge variant="secondary" className="text-xs h-6 px-2.5 bg-amber-50 text-amber-700 border-amber-200">Warning</Badge>
+                      <Badge variant="info" className="text-xs h-6 px-2.5 bg-amber-50 text-amber-700 border-amber-200">Warning</Badge>
                     )}
                   </div>
                 </div>
@@ -1003,7 +1003,7 @@ export default function ProjectsPage() {
               <div>
                 {selectedProject.stage === 'conversion' && selectedProject.completedJobs > 0 && (
                   <Button
-                    variant="outline"
+                    variant="default"
                     onClick={() => window.open('/preview/1', '_blank')}
                     className="h-8 text-xs"
                   >
@@ -1014,7 +1014,7 @@ export default function ProjectsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  variant="outline"
+                  variant="default"
                   onClick={() => setShowConfirmDialog(false)}
                   className="h-8 text-xs"
                 >

@@ -128,10 +128,10 @@ export default function LiveMonitorPage() {
           Real-time backend processing metrics and job queue status
         </p>
         <div className="mt-4 flex items-center gap-3">
-          <Badge variant={connected ? "default" : "secondary"}>
+          <Badge variant={connected ? "success" : "error"}>
             {connected ? '🟢 WebSocket Connected' : '🔴 Disconnected'}
           </Badge>
-          <Badge variant="outline">
+          <Badge variant="default">
             Backend: localhost:8000
           </Badge>
         </div>

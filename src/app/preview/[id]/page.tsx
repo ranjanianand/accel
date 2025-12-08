@@ -74,18 +74,18 @@ export default function PreviewPage() {
           }
         } else {
           // Use mock data when API is unavailable
-          useMockData()
+          loadMockData()
         }
       } catch (error) {
         console.error('Failed to fetch preview:', error)
         // Use mock data when API is unavailable
-        useMockData()
+        loadMockData()
       } finally {
         setLoading(false)
       }
     }
 
-    const useMockData = () => {
+    const loadMockData = () => {
       const mockJobs: PreviewJob[] = [
         {
           id: 1,
@@ -366,7 +366,6 @@ export default function PreviewPage() {
           },
           warnings: ['Lookup cache size may need tuning for large datasets'],
           created_at: '2024-11-28T10:30:00.000Z',
-          validation: { data_lineage: true, business_rules: { passed: 5, total: 5 }, error_handling: true, performance: true },
           validation: {
             data_lineage: true,
             business_rules: { passed: 5, total: 5 },

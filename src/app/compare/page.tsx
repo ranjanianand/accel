@@ -415,15 +415,15 @@ export default function ComparePage() {
               </div>
               <div className="flex items-center justify-between p-2 bg-white rounded">
                 <span className="text-slate-600">Travinto X2XConverter</span>
-                <Badge variant="secondary">~90%</Badge>
+                <Badge variant="info">~90%</Badge>
               </div>
               <div className="flex items-center justify-between p-2 bg-white rounded">
                 <span className="text-slate-600">Artha B&apos;etl™</span>
-                <Badge variant="outline">70%</Badge>
+                <Badge variant="warning">70%</Badge>
               </div>
               <div className="flex items-center justify-between p-2 bg-white rounded">
                 <span className="text-slate-600">Manual/Custom</span>
-                <Badge variant="outline">30-50%</Badge>
+                <Badge variant="error">30-50%</Badge>
               </div>
             </div>
           </div>
