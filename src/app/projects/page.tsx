@@ -1003,7 +1003,7 @@ export default function ProjectsPage() {
               <div>
                 {selectedProject.stage === 'conversion' && selectedProject.completedJobs > 0 && (
                   <Button
-                    variant="default"
+                    variant="outline"
                     onClick={() => window.open('/preview/1', '_blank')}
                     className="h-8 text-xs"
                   >
@@ -1014,7 +1014,7 @@ export default function ProjectsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  variant="default"
+                  variant="outline"
                   onClick={() => setShowConfirmDialog(false)}
                   className="h-8 text-xs"
                 >

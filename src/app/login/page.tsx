@@ -6,10 +6,11 @@ import Link from 'next/link'
 import { LogIn, Loader2, AlertCircle } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import Cookies from 'js-cookie'
+import { useAuth } from '@/contexts/auth-context'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -37,14 +38,15 @@ export default function LoginPage() {
         return
       }
 
-      // Store user info in cookie (client-side)
-      Cookies.set('user', JSON.stringify(data.user), { expires: 7 })
+      // Use AuthContext to set user state
+      login(data.user)
 
-      // Small delay to ensure server cookie is set before navigation
+      // Small delay to ensure state is updated
       await new Promise(resolve => setTimeout(resolve, 100))
 
-      // Redirect to dashboard using window.location for hard navigation
-      window.location.href = '/dashboard'
+      // Redirect to dashboard
+      router.push('/dashboard')
+      router.refresh()
     } catch (err) {
       console.error('Login error:', err)
       setError('An error occurred. Please try again.')

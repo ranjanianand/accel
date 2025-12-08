@@ -5,56 +5,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Search, Bell, User, Settings, LogOut, CheckCircle2, AlertCircle, Info, Check, Trash2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import Cookies from 'js-cookie'
-
-interface UserData {
-  id: string
-  username: string
-  name: string
-  email: string
-}
+import { useAuth } from '@/contexts/auth-context'
 
 export function Header() {
   const router = useRouter()
+  const { user, logout } = useAuth()
   const [showProfileMenu, setShowProfileMenu] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
-  const [user, setUser] = useState<UserData | null>(null)
   const notificationRef = useRef<HTMLDivElement>(null)
   const profileRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    // Load user data from cookie
-    const userCookie = Cookies.get('user')
-    if (userCookie) {
-      try {
-        const parsed = JSON.parse(userCookie)
-        setUser(parsed)
-      } catch (error) {
-        console.error('Failed to parse user cookie:', error)
-        // Clear invalid cookie
-        Cookies.remove('user')
-        setUser(null)
-      }
-    }
-  }, [])
-
-  const handleLogout = async () => {
-    try {
-      // Call logout API
-      await fetch('/api/auth/logout', { method: 'POST' })
-
-      // Clear client-side cookies
-      Cookies.remove('user')
-
-      // Redirect to login
-      router.push('/login')
-      router.refresh()
-    } catch (error) {
-      console.error('Logout error:', error)
-      // Still redirect to login even if API call fails
-      Cookies.remove('user')
-      router.push('/login')
-    }
+  const handleLogout = () => {
+    logout()
   }
 
   const toggleNotifications = () => {
