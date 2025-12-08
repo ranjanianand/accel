@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { format } from 'date-fns'
-import { MoreVertical, Copy, Eye, Trash2, Pencil } from 'lucide-react'
+import { MoreVertical, Copy, FileText, Code, Trash2, Pencil } from 'lucide-react'
 import { type MigrationRow } from './types'
 import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
 
@@ -80,7 +80,7 @@ export function MigrationsListView({ migrations }: MigrationsListViewProps) {
         return (
           <Link
             key={migration.id}
-            href={`/migrations/${migration.id}`}
+            href={`/preview/${migration.id}`}
             className="block group"
           >
             <div className="border-[1.5px] border-gray-300 rounded-lg bg-white hover:border-gray-500 hover:shadow-md transition-all duration-200 p-4" style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1)' }}>
@@ -130,12 +130,20 @@ export function MigrationsListView({ migrations }: MigrationsListViewProps) {
                     }
                   >
                     <DropdownMenuItem
-                      icon={<Eye className="h-4 w-4" />}
+                      icon={<FileText className="h-4 w-4" />}
                       onClick={() => {
                         window.location.href = `/migrations/${migration.id}`
                       }}
                     >
-                      View Details
+                      Details
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      icon={<Code className="h-4 w-4" />}
+                      onClick={() => {
+                        window.location.href = `/preview/${migration.id}`
+                      }}
+                    >
+                      Preview
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem

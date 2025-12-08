@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { usePipelineStore } from '@/stores/pipeline-store'
-import { Plus, Minus, Download, FileCode, Clock, ArrowRight, Play, AlertCircle, CheckCircle2, X } from 'lucide-react'
+import { Plus, Minus, Download, FileCode, Clock, ArrowRight, Play, AlertCircle, CheckCircle2, X, Eye } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface WaveProgress {
@@ -42,6 +43,7 @@ interface ActivityLog {
 type TabType = 'automated' | 'manual'
 
 export function ConversionStage() {
+  const router = useRouter()
   const { stages, updateStageProgress, completeStage, moveToNextStage } = usePipelineStore()
   const stageResult = stages['conversion']
   const [activeTab, setActiveTab] = useState<TabType>('automated')
@@ -321,6 +323,32 @@ export function ConversionStage() {
         </p>
       </div>
 
+      {/* Preview Banner - Show when jobs are being converted */}
+      {convertedJobs > 0 && (
+        <div className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4 mb-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Eye className="w-5 h-5 text-blue-600" />
+              <div>
+                <h3 className="text-sm font-semibold text-blue-900">
+                  Preview Available: {convertedJobs} jobs converted
+                </h3>
+                <p className="text-xs text-blue-700 mt-0.5">
+                  View side-by-side Informatica → Talend XML comparison with confidence scores
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => window.open('/preview/1', '_blank')}
+              variant="outline"
+            >
+              <Eye className="w-4 h-4 mr-2" />
+              View Preview
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Summary Cards */}
       <div className="grid grid-cols-4 gap-4">
         <div className="border border-border rounded-lg p-4">
@@ -434,6 +462,20 @@ export function ConversionStage() {
                       <Clock className="w-3 h-3" />
                       {wave.estimatedTime}
                     </span>
+                  )}
+                  {wave.convertedCount > 0 && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        window.open('/preview/1', '_blank')
+                      }}
+                      className="ml-2"
+                    >
+                      <Eye className="w-3 h-3 mr-1" />
+                      Preview
+                    </Button>
                   )}
                 </div>
               </button>

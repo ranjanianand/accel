@@ -1,5 +1,8 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Clock, Target, Zap, CheckCircle2, AlertCircle, Briefcase, Layers, ArrowRightLeft, Download, FileText, AlertTriangle, TrendingDown } from 'lucide-react'
+import { Clock, Target, Zap, CheckCircle2, AlertCircle, Briefcase, Layers, ArrowRightLeft, Download, FileText, AlertTriangle, TrendingDown, Eye } from 'lucide-react'
 import { type ExecutiveSummaryData } from '@/lib/mock-migration-data'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -10,6 +13,7 @@ export interface ExecutiveSummaryTabProps {
 }
 
 export function ExecutiveSummaryTab({ data }: ExecutiveSummaryTabProps) {
+  const router = useRouter()
   const { migration, metrics, breakdown, achievements, timeline, patternDistribution, sourceTarget } = data
 
   const formatNumber = (num: number) => {
@@ -88,6 +92,10 @@ export function ExecutiveSummaryTab({ data }: ExecutiveSummaryTabProps) {
 
         {/* Quick Actions */}
         <div className="flex items-center justify-center gap-4 py-4 border-y border-gray-200 bg-gray-50">
+          <Button variant="secondary" className="gap-2" onClick={() => router.push(`/preview/${migration.id}`)}>
+            <Eye className="h-4 w-4" />
+            View Conversion Preview
+          </Button>
           <Link href={`/migrations/${migration.id}/validation`}>
             <Button variant="secondary" className="gap-2">
               <FileText className="h-4 w-4" />

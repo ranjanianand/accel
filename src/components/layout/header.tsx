@@ -151,6 +151,12 @@ export function Header() {
             >
               Migrations
             </Link>
+            <Link
+              href="/projects"
+              className="px-3 py-1.5 rounded-md transition-colors hover:bg-background-secondary text-foreground-secondary hover:text-foreground"
+            >
+              Monitor
+            </Link>
           </nav>
         )}
 
