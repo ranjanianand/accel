@@ -488,7 +488,7 @@ export default function ProjectsPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-background pb-24">
+      <main className="min-h-screen bg-background pb-6">
         {/* Page Header */}
         <div className="px-6 py-3 border-b border-border bg-background-secondary">
           <div className="max-w-[1800px] mx-auto">
