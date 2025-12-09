@@ -1433,46 +1433,20 @@ export default function PreviewPage() {
       {/* Shared Header with Session Management */}
       <Header />
 
-      {/* Preview Header */}
-      <div className="bg-white border-b border-gray-200 px-8 py-3 flex-shrink-0">
-        <div className="flex items-center justify-between mb-3">
+      {/* Compact Preview Header with Inline Stats */}
+      <div className="bg-white border-b border-gray-200 px-8 py-2 flex-shrink-0">
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
+            <h1 className="text-lg font-bold text-gray-900">
               Migration Preview <span className="text-gray-400">•</span> <span className="text-gray-600">CustomerETL v2</span>
             </h1>
-            <p className="text-xs text-gray-600 mt-0.5">
-              Side-by-side XML comparison with conversion analysis
-            </p>
+            <p className="text-xs text-gray-600">Side-by-side XML comparison</p>
           </div>
 
-          {/* Export Buttons - Hidden for now */}
-          {/* <div className="flex items-center gap-2">
-            {selectedJob && (
-              <Button
-                variant="outline"
-                onClick={() => downloadJob(selectedJob)}
-                className="text-gray-700"
-              >
-                <FileDown className="w-4 h-4 mr-2" />
-                Export Current
-              </Button>
-            )}
-            <Button
-              variant="default"
-              onClick={downloadAllJobs}
-              disabled={jobs.length === 0}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Export All ({jobs.length})
-            </Button>
-          </div> */}
+          {/* Inline Stats */}
+          {stats && <PreviewSummary stats={stats} />}
 
         </div>
-
-        {/* Summary Statistics */}
-        {stats && <PreviewSummary stats={stats} />}
-
       </div>
 
       {/* Main Content */}
