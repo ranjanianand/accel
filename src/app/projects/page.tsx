@@ -489,51 +489,43 @@ export default function ProjectsPage() {
       <Header />
 
       <main className="bg-background">
-        {/* Page Header */}
-        <div className="px-6 py-3 border-b border-border bg-background-secondary">
-          <div className="max-w-[1800px] mx-auto">
+        {/* Compact Header with Inline Stats */}
+        <div className="px-6 py-2 border-b border-border bg-background-secondary">
+          <div className="max-w-[1800px] mx-auto flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-bold tracking-tight">Migration Pipeline Monitor</h1>
-              <p className="text-[13px] text-foreground-secondary mt-0.5">
-                Real-time tracking of active migration workflows
-              </p>
+              <h1 className="text-lg font-bold tracking-tight">Migration Pipeline Monitor</h1>
+              <p className="text-xs text-foreground-secondary">Real-time tracking</p>
             </div>
-          </div>
-        </div>
-
-        {/* Summary Stats */}
-        <div className="px-6 py-3 bg-background-secondary border-b border-border">
-          <div className="max-w-[1800px] mx-auto">
-            <div className="grid grid-cols-3 gap-8">
-              <div>
-                <div className="text-2xl font-bold tracking-tight text-foreground">{totalProjects}</div>
-                <div className="text-sm text-foreground-secondary mt-0.5">Total Projects</div>
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <div className="text-lg font-bold text-foreground">{totalProjects}</div>
+                <div className="text-xs text-foreground-secondary">Total</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold tracking-tight text-blue-600">{activeProjects}</div>
-                <div className="text-sm text-foreground-secondary mt-0.5">Active Migrations</div>
+              <div className="text-center">
+                <div className="text-lg font-bold text-blue-600">{activeProjects}</div>
+                <div className="text-xs text-foreground-secondary">Active</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold tracking-tight text-green-600">{completedProjects}</div>
-                <div className="text-sm text-foreground-secondary mt-0.5">Completed Today</div>
+              <div className="text-center">
+                <div className="text-lg font-bold text-green-600">{completedProjects}</div>
+                <div className="text-xs text-foreground-secondary">Completed</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Status Board */}
-        <div className="px-6 py-6">
+        <div className="px-6 py-3">
           <div className="max-w-[1800px] mx-auto">
             <div className="grid grid-cols-5 gap-4">
               {/* Setup Column */}
-              <div className="flex flex-col space-y-3">
-                <div className={`${stageConfig.setup.color} rounded-lg p-3 flex-shrink-0`}>
+              <div className="flex flex-col space-y-2">
+                <div className={`${stageConfig.setup.color} rounded-lg p-2 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-slate-900">{stageConfig.setup.label}</h2>
-                    <Badge variant="info" className="text-xs">{projectsByStage.setup.length}</Badge>
+                    <h2 className="text-xs font-semibold text-slate-900">{stageConfig.setup.label}</h2>
+                    <Badge variant="info" className="text-[10px] h-4 px-1.5">{projectsByStage.setup.length}</Badge>
                   </div>
                 </div>
-                <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
+                <div className="space-y-2 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 180px)' }}>
                   {projectsByStage.setup.map(project => (
                     <ProjectCard key={project.id} project={project} onViewPipeline={handleViewPipeline} />
                   ))}
@@ -542,13 +534,13 @@ export default function ProjectsPage() {
 
               {/* Analysis Column */}
               <div className="flex flex-col space-y-3">
-                <div className={`${stageConfig.analysis.color} rounded-lg p-3 flex-shrink-0`}>
+                <div className={`${stageConfig.analysis.color} rounded-lg p-2 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-slate-900">{stageConfig.analysis.label}</h2>
-                    <Badge variant="info" className="text-xs">{projectsByStage.analysis.length}</Badge>
+                    <h2 className="text-xs font-semibold text-slate-900">{stageConfig.analysis.label}</h2>
+                    <Badge variant="info" className="text-[10px] h-4 px-1.5">{projectsByStage.analysis.length}</Badge>
                   </div>
                 </div>
-                <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
+                <div className="space-y-2 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 180px)' }}>
                   {projectsByStage.analysis.map(project => (
                     <ProjectCard key={project.id} project={project} onViewPipeline={handleViewPipeline} />
                   ))}
@@ -557,13 +549,13 @@ export default function ProjectsPage() {
 
               {/* Discovery Column */}
               <div className="flex flex-col space-y-3">
-                <div className={`${stageConfig.discovery.color} rounded-lg p-3 flex-shrink-0`}>
+                <div className={`${stageConfig.discovery.color} rounded-lg p-2 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-slate-900">{stageConfig.discovery.label}</h2>
-                    <Badge variant="info" className="text-xs">{projectsByStage.discovery.length}</Badge>
+                    <h2 className="text-xs font-semibold text-slate-900">{stageConfig.discovery.label}</h2>
+                    <Badge variant="info" className="text-[10px] h-4 px-1.5">{projectsByStage.discovery.length}</Badge>
                   </div>
                 </div>
-                <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
+                <div className="space-y-2 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 180px)' }}>
                   {projectsByStage.discovery.map(project => (
                     <ProjectCard key={project.id} project={project} onViewPipeline={handleViewPipeline} />
                   ))}
@@ -572,13 +564,13 @@ export default function ProjectsPage() {
 
               {/* Conversion Column */}
               <div className="flex flex-col space-y-3">
-                <div className={`${stageConfig.conversion.color} rounded-lg p-3 flex-shrink-0`}>
+                <div className={`${stageConfig.conversion.color} rounded-lg p-2 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-slate-900">{stageConfig.conversion.label}</h2>
-                    <Badge variant="info" className="text-xs">{projectsByStage.conversion.length}</Badge>
+                    <h2 className="text-xs font-semibold text-slate-900">{stageConfig.conversion.label}</h2>
+                    <Badge variant="info" className="text-[10px] h-4 px-1.5">{projectsByStage.conversion.length}</Badge>
                   </div>
                 </div>
-                <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
+                <div className="space-y-2 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 180px)' }}>
                   {projectsByStage.conversion.map(project => (
                     <ProjectCard key={project.id} project={project} onViewPipeline={handleViewPipeline} />
                   ))}
@@ -587,13 +579,13 @@ export default function ProjectsPage() {
 
               {/* Completed Column */}
               <div className="flex flex-col space-y-3">
-                <div className={`${stageConfig.completed.color} rounded-lg p-3 flex-shrink-0`}>
+                <div className={`${stageConfig.completed.color} rounded-lg p-2 flex-shrink-0`}>
                   <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-semibold text-slate-900">{stageConfig.completed.label}</h2>
-                    <Badge variant="info" className="text-xs">{projectsByStage.completed.length}</Badge>
+                    <h2 className="text-xs font-semibold text-slate-900">{stageConfig.completed.label}</h2>
+                    <Badge variant="info" className="text-[10px] h-4 px-1.5">{projectsByStage.completed.length}</Badge>
                   </div>
                 </div>
-                <div className="space-y-3 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 320px)' }}>
+                <div className="space-y-2 overflow-y-auto overflow-x-hidden scrollbar-thin" style={{ maxHeight: 'calc(100vh - 180px)' }}>
                   {projectsByStage.completed.map(project => (
                     <ProjectCard key={project.id} project={project} onViewPipeline={handleViewPipeline} />
                   ))}
