@@ -87,7 +87,7 @@ export function MigrationsCardView({ migrations }: MigrationsCardViewProps) {
         return (
           <Link
             key={migration.id}
-            href={`/preview/${migration.id}`}
+            href={`/migrations/${migration.id}`}
             className="block group"
           >
             <div className="h-[140px] border-[1.5px] border-gray-300 rounded-lg bg-white hover:border-gray-400 hover:shadow-lg transition-all duration-200 flex flex-col" style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1)' }}>
