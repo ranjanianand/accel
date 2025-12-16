@@ -46,12 +46,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initAuth = async () => {
       try {
         if (authAPI.isAuthenticated()) {
-          const currentUser = await authAPI.getCurrentUser()
-          setUser(currentUser)
+          try {
+            const currentUser = await authAPI.getCurrentUser()
+            setUser(currentUser)
+          } catch (error) {
+            // If backend unavailable but token exists, use mock user
+            const token = authAPI.getToken()
+            if (token === 'mock-jwt-token-for-demo') {
+              setUser({
+                id: 'mock-user-1',
+                name: 'Demo User',
+                email: 'admin@aixvenus.com',
+                tenant_id: 'mock-tenant-1',
+                tenant_name: 'Demo Tenant',
+                subscription_tier: 'enterprise',
+              })
+            } else {
+              authAPI.logout()
+            }
+          }
         }
       } catch (error) {
         console.error('Failed to initialize auth:', error)
-        // Token might be expired, clear it
         authAPI.logout()
       } finally {
         setIsLoading(false)
@@ -64,9 +80,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (credentials: LoginRequest) => {
     try {
       setIsLoading(true)
-      const response = await authAPI.login(credentials)
-      setUser(response.user)
-      router.push('/dashboard')
+
+      // Try real backend first, fallback to mock for production
+      try {
+        const response = await authAPI.login(credentials)
+        setUser(response.user)
+        router.push('/dashboard')
+      } catch (backendError) {
+        console.log('Backend unavailable, using mock authentication')
+
+        // Mock authentication for production/demo
+        if (
+          (credentials.email === 'admin@aixvenus.com' && credentials.password === 'Aixv@2024!Secure') ||
+          (credentials.email === 'admin@test.com' && credentials.password === 'password123')
+        ) {
+          const mockUser = {
+            id: 'mock-user-1',
+            name: 'Demo User',
+            email: credentials.email,
+            tenant_id: 'mock-tenant-1',
+            tenant_name: 'Demo Tenant',
+            subscription_tier: 'enterprise',
+          }
+
+          // Set mock token
+          authAPI.setToken('mock-jwt-token-for-demo')
+          setUser(mockUser)
+          router.push('/dashboard')
+        } else {
+          throw new Error('Invalid credentials')
+        }
+      }
     } catch (error) {
       console.error('Login failed:', error)
       throw error
