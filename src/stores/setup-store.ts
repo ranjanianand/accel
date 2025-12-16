@@ -321,8 +321,8 @@ export const useSetupStore = create<SetupStore>()(
                 targets: Math.floor(fileCount * 1.5),
               },
               patterns: [
-                { name: 'SCD Type 2', count: Math.floor(fileCount * 0.3), confidence: 95 },
-                { name: 'Incremental Load', count: Math.floor(fileCount * 0.4), confidence: 92 },
+                { name: 'SCD Type 2', count: Math.floor(fileCount * 0.3), percentage: 30 },
+                { name: 'Incremental Load', count: Math.floor(fileCount * 0.4), percentage: 40 },
               ],
               automationRate: 94.5,
               timeSavingsEstimate: fileCount * 120,
