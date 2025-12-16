@@ -487,6 +487,8 @@ export const authAPI = {
   getCurrentUser: () => apiReal.getCurrentUser(),
   logout: () => apiReal.logout(),
   isAuthenticated: () => apiReal.isAuthenticated(),
+  getToken: () => apiReal.getToken(),
+  setToken: (token: string | null) => apiReal.setToken(token),
 }
 
 export const projectsAPI = {
