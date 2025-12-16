@@ -10,6 +10,7 @@ import { authAPI, type LoginRequest } from '@/lib/api-real'
 
 interface User {
   id: string
+  name?: string
   email: string
   tenant_id: string
   tenant_name: string
