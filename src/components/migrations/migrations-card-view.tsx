@@ -139,8 +139,7 @@ export function MigrationsCardView({ migrations }: MigrationsCardViewProps) {
                     >
                       <DropdownMenuItem
                         icon={<FileText className="h-4 w-4" />}
-                        onClick={(e) => {
-                          e.stopPropagation()
+                        onClick={() => {
                           window.location.href = `/migrations/${migration.id}`
                         }}
                       >
@@ -148,8 +147,7 @@ export function MigrationsCardView({ migrations }: MigrationsCardViewProps) {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         icon={<Code className="h-4 w-4" />}
-                        onClick={(e) => {
-                          e.stopPropagation()
+                        onClick={() => {
                           window.location.href = `/preview/${migration.id}`
                         }}
                       >
@@ -159,8 +157,7 @@ export function MigrationsCardView({ migrations }: MigrationsCardViewProps) {
                       <DropdownMenuItem
                         icon={<Trash2 className="h-4 w-4" />}
                         variant="danger"
-                        onClick={(e) => {
-                          e.stopPropagation()
+                        onClick={() => {
                           if (confirm(`Delete migration "${migration.name}"?`)) {
                             alert('Delete functionality coming soon')
                           }

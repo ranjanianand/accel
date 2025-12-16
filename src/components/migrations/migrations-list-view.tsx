@@ -131,8 +131,7 @@ export function MigrationsListView({ migrations }: MigrationsListViewProps) {
                   >
                     <DropdownMenuItem
                       icon={<FileText className="h-4 w-4" />}
-                      onClick={(e) => {
-                        e.stopPropagation()
+                      onClick={() => {
                         window.location.href = `/migrations/${migration.id}`
                       }}
                     >
@@ -140,8 +139,7 @@ export function MigrationsListView({ migrations }: MigrationsListViewProps) {
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       icon={<Code className="h-4 w-4" />}
-                      onClick={(e) => {
-                        e.stopPropagation()
+                      onClick={() => {
                         window.location.href = `/preview/${migration.id}`
                       }}
                     >
@@ -151,8 +149,7 @@ export function MigrationsListView({ migrations }: MigrationsListViewProps) {
                     <DropdownMenuItem
                       icon={<Trash2 className="h-4 w-4" />}
                       variant="danger"
-                      onClick={(e) => {
-                        e.stopPropagation()
+                      onClick={() => {
                         if (confirm(`Delete migration "${migration.name}"?`)) {
                           alert('Delete functionality coming soon')
                         }
