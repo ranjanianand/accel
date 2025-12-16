@@ -240,10 +240,7 @@ class RealAPIClient {
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       ...options.headers,
-    }
-
-    if (this.token) {
-      headers['Authorization'] = `Bearer ${this.token}`
+      ...(this.token ? { 'Authorization': `Bearer ${this.token}` } : {}),
     }
 
     const response = await fetch(url, {
@@ -409,10 +406,8 @@ class RealAPIClient {
     })
 
     const url = `${this.baseUrl}/api/projects/${projectId}/files/upload`
-    const headers: Record<string, string> = {}
-
-    if (this.token) {
-      headers['Authorization'] = `Bearer ${this.token}`
+    const headers: Record<string, string> = {
+      ...(this.token ? { 'Authorization': `Bearer ${this.token}` } : {}),
     }
 
     const response = await fetch(url, {
