@@ -6,12 +6,11 @@ import Link from 'next/link'
 import { LogIn, Loader2, AlertCircle } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/contexts/auth-context'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function LoginPage() {
-  const router = useRouter()
   const { login } = useAuth()
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -22,34 +21,12 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        setError(data.error || 'Login failed')
-        setIsLoading(false)
-        return
-      }
-
-      // Use AuthContext to set user state
-      login(data.user)
-
-      // Small delay to ensure state is updated
-      await new Promise(resolve => setTimeout(resolve, 100))
-
-      // Redirect to dashboard
-      router.push('/dashboard')
-      router.refresh()
+      await login({ email, password })
+      // AuthContext login handles navigation to /dashboard
     } catch (err) {
       console.error('Login error:', err)
-      setError('An error occurred. Please try again.')
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.')
+    } finally {
       setIsLoading(false)
     }
   }
@@ -100,18 +77,18 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="username" className="text-sm font-medium text-foreground">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
                   Email address
                 </label>
                 <Input
-                  id="username"
+                  id="email"
                   type="email"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="name@aixvenus.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@test.com"
                   required
                   disabled={isLoading}
-                  autoComplete="username"
+                  autoComplete="email"
                   className="h-11 px-4 bg-background border-border focus:border-primary transition-colors"
                 />
               </div>
