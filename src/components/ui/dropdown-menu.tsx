@@ -84,6 +84,8 @@ export function DropdownMenuItem({
   const context = React.useContext(DropdownContext)
 
   const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     if (onClick) {
       onClick()
     }
