@@ -122,7 +122,7 @@ interface SetupStore {
   clearFiles: () => void
 
   // Actions - Analysis
-  startAnalysis: () => void
+  startAnalysis: () => Promise<void>
   setAnalysisResults: (results: AnalysisResults) => void
   completeAnalysis: () => void
 
@@ -262,55 +262,56 @@ export const useSetupStore = create<SetupStore>()(
         },
 
         // Analysis actions
-        startAnalysis: () => {
+        startAnalysis: async () => {
           set({
             isAnalyzing: true,
             isUploadLocked: true,
             currentStep: 'analysis',
           })
 
-          // Mock analysis with timeout
-          setTimeout(() => {
+          try {
+            const { projectInfo, files } = get()
+
+            // Import API client
+            const { apiReal, filesAPI } = await import('@/lib/api-real')
+
+            // 1. Create project
+            const project = await apiReal.createProject({
+              name: projectInfo.name,
+              description: projectInfo.description,
+              source_platform_version: projectInfo.sourceSystem,
+            })
+
+            // 2. Upload files
+            const fileObjects = files.map(f => f.file)
+            await filesAPI.upload(project.id, fileObjects)
+
+            // 3. Analyze files
+            const analysisResults = await filesAPI.analyze(project.id)
+
+            // 4. Set real analysis results
             get().setAnalysisResults({
-              objectCounts: {
-                mappings: 10,
-                workflows: 3,
-                sessions: 5,
-                mapplets: 2,
-                sources: 8,
-                targets: 6,
-              },
-              patterns: [
-                { name: 'SCD Type 2', count: 4, percentage: 40 },
-                { name: 'CDC', count: 3, percentage: 30 },
-                { name: 'Snapshot', count: 2, percentage: 20 },
-                { name: 'Aggregation', count: 1, percentage: 10 },
-              ],
-              automationRate: 95,
-              timeSavingsEstimate: 45,
+              objectCounts: analysisResults.object_counts,
+              patterns: analysisResults.patterns,
+              automationRate: analysisResults.automation_rate,
+              timeSavingsEstimate: analysisResults.time_savings_estimate,
               complexity: {
-                average: 52,
-                distribution: {
-                  low: 2,
-                  medium: 6,
-                  high: 2,
-                },
+                average: analysisResults.complexity.average,
+                distribution: analysisResults.complexity.distribution,
               },
               detectedConnections: [
                 { name: 'SRC_CUSTOMER_DB', type: 'Oracle', required: true, configured: false },
                 { name: 'TGT_DWH_DB', type: 'Oracle', required: true, configured: false },
-                { name: 'FILE_INPUT', type: 'Flat File', required: false, configured: false },
               ],
-              flatFiles: [
-                { fileName: 'customer_master.csv', fileType: 'CSV', description: 'Customer master data' },
-                { fileName: 'transactions_daily.txt', fileType: 'TXT', description: 'Daily transaction records' },
-                { fileName: 'product_catalog.xlsx', fileType: 'Excel', description: 'Product reference data' },
-                { fileName: 'orders_feed.csv', fileType: 'CSV', description: 'Order processing feed' },
-                { fileName: 'inventory_snapshot.txt', fileType: 'TXT', description: 'Daily inventory levels' },
-              ],
+              flatFiles: [],
             })
             get().completeAnalysis()
-          }, 3000)
+          } catch (error) {
+            console.error('Analysis failed:', error)
+            set({ isAnalyzing: false })
+            // Show error to user
+            alert(error instanceof Error ? error.message : 'Analysis failed. Please try again.')
+          }
         },
 
         setAnalysisResults: (results) => {

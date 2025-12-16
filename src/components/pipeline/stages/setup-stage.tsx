@@ -72,12 +72,15 @@ export function SetupStage() {
   // Analysis handler - automatically proceeds after completion
   const handleAnalyze = async () => {
     setIsTransitioning(true)
-    startAnalysis()
-    // Analysis completes in 3 seconds (from setup-store), then auto-proceed
-    setTimeout(() => {
+    try {
+      await startAnalysis()
+      // Analysis complete, proceed to next stage
       completeStage('setup')
       moveToNextStage()
-    }, 3500) // Slightly longer than analysis timeout
+    } catch (error) {
+      // Error is already handled in startAnalysis
+      setIsTransitioning(false)
+    }
   }
 
   const isLocked = isUploadLocked || isAnalyzing || analysisResults !== null

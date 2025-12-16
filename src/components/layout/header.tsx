@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Search, Bell, User, Settings, LogOut, CheckCircle2, AlertCircle, Info, Check, Trash2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import { useAuth } from '@/contexts/auth-context'
+import { useAuth } from '@/contexts/AuthContext'
 
 export function Header() {
   const router = useRouter()
