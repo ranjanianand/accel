@@ -340,31 +340,9 @@ export default function ProductPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="bg-background border border-border rounded-xl p-8">
-                <h3 className="text-xl font-bold mb-4">Data Privacy</h3>
-                <ul className="space-y-3 text-sm text-foreground-secondary">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Your data never leaves your infrastructure</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>End-to-end encryption in transit and at rest</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>GDPR and CCPA compliant</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Role-based access control</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-background border border-border rounded-xl p-8">
-                <h3 className="text-xl font-bold mb-4">Security Architecture</h3>
+                <h3 className="text-xl font-bold mb-4">Security & Privacy</h3>
                 <ul className="space-y-3 text-sm text-foreground-secondary">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -376,7 +354,7 @@ export default function ProductPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Encryption at rest and in transit</span>
+                    <span>Encryption at rest and in transit (TLS 1.3)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -386,23 +364,23 @@ export default function ProductPage() {
               </div>
 
               <div className="bg-background border border-border rounded-xl p-8">
-                <h3 className="text-xl font-bold mb-4">Enterprise Features</h3>
+                <h3 className="text-xl font-bold mb-4">Platform Features</h3>
                 <ul className="space-y-3 text-sm text-foreground-secondary">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Single Sign-On (SSO) integration</span>
+                    <span>JWT authentication with secure tokens</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>On-premise deployment option</span>
+                    <span>Role-based access control</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Custom SLA agreements</span>
+                    <span>API-first architecture</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>Dedicated support team</span>
+                    <span>Enterprise SSO ready (roadmap)</span>
                   </li>
                 </ul>
               </div>
