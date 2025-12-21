@@ -364,19 +364,19 @@ export default function ProductPage() {
               </div>
 
               <div className="bg-background border border-border rounded-xl p-8">
-                <h3 className="text-xl font-bold mb-4">Compliance</h3>
+                <h3 className="text-xl font-bold mb-4">Security Architecture</h3>
                 <ul className="space-y-3 text-sm text-foreground-secondary">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>SOC 2 Type II certified</span>
+                    <span>Hosted on SOC 2 + ISO 27001 certified infrastructure</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>HIPAA compliant for healthcare</span>
+                    <span>Multi-tenant data isolation (RLS)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span>PCI DSS for financial services</span>
+                    <span>Encryption at rest and in transit</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
